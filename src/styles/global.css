@@ -55,11 +55,15 @@
 }
 
 @utility max-w-app {
-  @apply max-w-4xl;
+  @apply max-w-6xl;
+}
+
+@utility max-w-reader {
+  max-width: 82ch;
 }
 
 @utility app-layout {
-  @apply max-w-app mx-auto w-full px-4;
+  @apply max-w-app mx-auto w-full px-4 sm:px-6;
 }
 
 @utility active-nav {
@@ -84,6 +88,10 @@
 
 @utility paper-panel {
   @apply border-border bg-background/90 rounded-[2rem] border;
+}
+
+@utility quiet-panel {
+  @apply border-border bg-muted/35 rounded-[2rem] border;
 }
 
 :target {

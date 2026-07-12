@@ -113,12 +113,12 @@ const ogImage = ogImageUrl
   >
     <h1
       style={{ viewTransitionName: toTransitionName(title) }}
-      class="text-accent inline-block text-2xl font-bold sm:text-3xl"
+      class="text-accent max-w-reader inline-block text-2xl leading-tight font-bold sm:text-4xl"
     >
       {title}
     </h1>
 
-    <div class="my-2 flex items-center gap-2">
+    <div class="my-3 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
       <span
         aria-hidden="true"
@@ -135,8 +135,8 @@ const ogImage = ogImageUrl
     <article
       id="article"
       class:list={[
-        "mt-8 w-full",
-        "app-prose max-w-app",
+        "mt-10 w-full",
+        "app-prose max-w-reader",
         "prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)",
       ]}
     >

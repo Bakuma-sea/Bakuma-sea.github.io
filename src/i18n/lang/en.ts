@@ -52,7 +52,8 @@ export default {
     archivesDesc: "All the articles I've archived.",
 
     readingListTitle: "Reading List",
-    readingListDesc: "A running list of books, papers and docs I want to revisit.",
+    readingListDesc:
+      "A running list of books, papers and docs I want to revisit.",
 
     searchTitle: "Search",
     searchDesc: "Search any article ...",
@@ -62,6 +63,10 @@ export default {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     toggleTheme: "Toggle theme",
+    displayStyle: "Display style",
+    lightStyle: "Light",
+    darkStyle: "Dark",
+    paperStyle: "Paper",
     searchPlaceholder: "Search posts...",
     noResults: "No results found",
     goToPreviousPage: "Go to previous page",

@@ -4,7 +4,7 @@
 @import "rehype-callouts/theme/obsidian";
 @import "katex/dist/katex.min.css";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
   * {
@@ -91,7 +91,21 @@
 }
 
 .katex-display {
+  color: var(--foreground);
   overflow-x: auto;
   overflow-y: hidden;
   padding-block: 0.35rem;
+}
+
+.katex {
+  color: var(--foreground);
+}
+
+.theme-switcher {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+
+.theme-option[aria-pressed="true"] {
+  background: var(--foreground);
+  color: var(--background);
 }

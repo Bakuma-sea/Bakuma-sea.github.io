@@ -15,13 +15,13 @@
 /* Light theme values */
 :root,
 [data-theme="light"] {
-  --background: #f7f2e8;
-  --foreground: #1f1b17;
+  --background: #fbfaf7;
+  --foreground: #1f2320;
   --accent: #214f43;
   --accent-foreground: #ffffff;
-  --muted: #eee5d7;
-  --muted-foreground: #776b60;
-  --border: #d7cbbd;
+  --muted: #eef1ec;
+  --muted-foreground: #667168;
+  --border: #d7ddd5;
   --font-body:
     "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei",
     sans-serif;
@@ -34,11 +34,22 @@
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #171818;
-  --foreground: #efe8dc;
-  --accent: #9ac8b7;
+  --background: #121515;
+  --foreground: #f4efe7;
+  --accent: #b8dfcf;
+  --accent-foreground: #12201b;
+  --muted: #202626;
+  --muted-foreground: #d2cabf;
+  --border: #444b48;
+}
+
+/* Warm paper values for long-form reading */
+[data-theme="paper"] {
+  --background: #f7f2e8;
+  --foreground: #1f1b17;
+  --accent: #214f43;
   --accent-foreground: #ffffff;
-  --muted: #232424;
-  --muted-foreground: #b7aea2;
-  --border: #3a3d3b;
+  --muted: #eee5d7;
+  --muted-foreground: #776b60;
+  --border: #d7cbbd;
 }

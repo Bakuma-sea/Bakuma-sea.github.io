@@ -1,19 +1,28 @@
 const THEME_KEY = "theme";
 const LIGHT = "light";
 const DARK = "dark";
+const PAPER = "paper";
+const THEMES = [LIGHT, DARK, PAPER] as const;
+type ThemeValue = (typeof THEMES)[number];
 
-function getPreferredTheme(): string {
+function isThemeValue(value: string | null): value is ThemeValue {
+  return THEMES.includes(value as ThemeValue);
+}
+
+function getPreferredTheme(): ThemeValue {
   const stored = localStorage.getItem(THEME_KEY);
-  if (stored) return stored;
+  if (isThemeValue(stored)) return stored;
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? DARK
     : LIGHT;
 }
 
 // Reuse the value already set by the inline FOUC-prevention script if available.
-let themeValue: string =
-  (window as unknown as { __theme?: { value: string } }).__theme?.value ??
-  getPreferredTheme();
+let themeValue: ThemeValue = isThemeValue(
+  (window as unknown as { __theme?: { value: string } }).__theme?.value ?? null
+)
+  ? (window as unknown as { __theme: { value: ThemeValue } }).__theme.value
+  : getPreferredTheme();
 
 function persist(): void {
   localStorage.setItem(THEME_KEY, themeValue);
@@ -24,7 +33,13 @@ function reflect(): void {
   const root = document.firstElementChild;
   root?.setAttribute("data-theme", themeValue);
   root?.classList.toggle("dark", themeValue === DARK);
-  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
+  document
+    .querySelector("#theme-switcher")
+    ?.setAttribute("data-current-theme", themeValue);
+  document.querySelectorAll<HTMLElement>("[data-theme-option]").forEach(btn => {
+    const active = btn.dataset.themeOption === themeValue;
+    btn.setAttribute("aria-pressed", String(active));
+  });
 
   // Fill <meta name="theme-color"> with the computed background colour so
   // Android's browser chrome matches the page background.
@@ -36,9 +51,17 @@ function reflect(): void {
 
 function setup(): void {
   reflect();
-  document.querySelector("#theme-btn")?.addEventListener("click", () => {
-    themeValue = themeValue === LIGHT ? DARK : LIGHT;
-    persist();
+
+  document.querySelectorAll<HTMLElement>("[data-theme-option]").forEach(btn => {
+    if (btn.dataset.themeBound === "true") return;
+    btn.dataset.themeBound = "true";
+
+    btn.addEventListener("click", () => {
+      const nextTheme = btn.dataset.themeOption ?? null;
+      if (!isThemeValue(nextTheme)) return;
+      themeValue = nextTheme;
+      persist();
+    });
   });
 }
 
@@ -64,6 +87,7 @@ document.addEventListener("astro:before-swap", event => {
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", ({ matches }) => {
+    if (localStorage.getItem(THEME_KEY)) return;
     themeValue = matches ? DARK : LIGHT;
-    persist();
+    reflect();
   });

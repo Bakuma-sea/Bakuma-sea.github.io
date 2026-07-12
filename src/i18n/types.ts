@@ -60,6 +60,10 @@ export interface UIStrings {
     openMenu: string;
     closeMenu: string;
     toggleTheme: string;
+    displayStyle: string;
+    lightStyle: string;
+    darkStyle: string;
+    paperStyle: string;
     searchPlaceholder: string;
     noResults: string;
     goToPreviousPage: string;

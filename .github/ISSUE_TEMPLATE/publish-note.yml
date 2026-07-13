@@ -1,0 +1,80 @@
+name: 发布学习笔记
+description: 从任意设备粘贴 Markdown，自动发布到博客。
+title: "发布笔记："
+labels: ["publish-note"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        把 Markdown 正文粘到下面即可。提交 Issue 后，GitHub Actions 会自动生成文章文件并推送到 `main`，随后 GitHub Pages 会重新部署。
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: 文章标题，会显示在博客文章页和列表页。
+      placeholder: 例如：GRPO 训练稳定性笔记
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: 文章保存目录。
+      options:
+        - rl
+        - llm
+        - agents
+        - notes
+    validations:
+      required: true
+
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: 可选。URL 文件名，只允许英文、数字和短横线。留空会自动生成。
+      placeholder: grpo-training-stability
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: 文章摘要，建议 30 到 80 字。
+      placeholder: 简要说明这篇笔记记录了什么。
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: 用英文逗号或中文逗号分隔。
+      placeholder: GRPO, RL, LLM
+    validations:
+      required: true
+
+  - type: dropdown
+    id: featured
+    attributes:
+      label: Featured
+      description: 是否放入首页精选。
+      options:
+        - "false"
+        - "true"
+    validations:
+      required: true
+
+  - type: textarea
+    id: markdown
+    attributes:
+      label: Markdown content
+      description: 粘贴完整 Markdown 正文。可以包含公式、表格、代码块。
+      render: markdown
+      placeholder: |
+        # 标题
+
+        这里粘贴你的学习笔记正文。
+    validations:
+      required: true

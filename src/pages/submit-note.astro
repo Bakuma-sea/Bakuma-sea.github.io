@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const issueUrl =
+  "https://github.com/Bakuma-sea/Bakuma-sea.github.io/issues/new?template=publish-note.yml";
+---
+
+<Layout
+  title="发布笔记 | Bakuma Notes"
+  description="从任意设备通过 GitHub Issue 发布 Markdown 学习笔记。"
+>
+  <Header />
+  <main id="main-content" class="app-layout py-12">
+    <section
+      class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(24rem,1.1fr)] lg:items-start"
+    >
+      <div>
+        <p class="editorial-kicker">Markdown Intake</p>
+        <h1
+          class="mt-4 max-w-[10em] text-4xl leading-tight font-bold sm:text-5xl"
+        >
+          从任何设备发布学习笔记
+        </h1>
+        <p class="mt-6 max-w-[36em] text-lg leading-8">
+          这个博客是静态站点，不能直接在网页里写入文件。现在推荐用 GitHub Issue
+          作为安全入口：粘贴 Markdown，Actions 自动生成文章并触发 Pages 部署。
+        </p>
+        <a
+          href={issueUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="bg-accent text-accent-foreground mt-8 inline-flex rounded-full px-5 py-3 font-semibold transition-transform hover:-translate-y-0.5"
+        >
+          打开发布表单
+        </a>
+      </div>
+
+      <div class="paper-panel p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">使用步骤</h2>
+        <ol class="mt-6 space-y-5 leading-8">
+          <li>
+            <strong>1.</strong> 打开发布表单，填写标题、分类、摘要和标签。
+          </li>
+          <li>
+            <strong>2.</strong> 把 Markdown 正文粘贴到
+            <code>Markdown content</code>。
+          </li>
+          <li>
+            <strong>3.</strong> 提交 Issue，等待 GitHub Actions 自动提交文章。
+          </li>
+          <li>
+            <strong>4.</strong> Pages 部署完成后，文章会出现在博客列表和搜索里。
+          </li>
+        </ol>
+        <div class="quiet-panel mt-8 p-5">
+          <h3 class="font-semibold">适合的场景</h3>
+          <p class="text-muted-foreground mt-3 leading-7">
+            手机、iPad、实验室电脑或任何不能方便 clone 仓库的设备。只要能登录
+            GitHub， 就能发布新的 Markdown 笔记。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

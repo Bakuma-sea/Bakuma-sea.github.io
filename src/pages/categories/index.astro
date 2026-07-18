@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import Category from "@/components/Category.astro";
+import { getCategoryCounts } from "@/utils/getPostCategory";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+const categories = getCategoryCounts(posts);
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+---
+
+<Layout title={`${t.pages.categoriesTitle} | ${config.site.title}`}>
+  <Header />
+  <Breadcrumb />
+  <Main pageTitle={t.pages.categoriesTitle} pageDesc={t.pages.categoriesDesc}>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        categories.map(({ category, categoryName, count }) => (
+          <Category {category} {categoryName} {count} />
+        ))
+      }
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

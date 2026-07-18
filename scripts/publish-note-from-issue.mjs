@@ -30,6 +30,7 @@ const frontmatter = [
   `pubDatetime: ${pubDatetime}`,
   `title: ${yamlString(title)}`,
   `featured: ${featured}`,
+  `category: ${yamlString(category)}`,
   "tags:",
   ...tags.map(tag => `  - ${yamlString(tag)}`),
   `description: ${yamlString(description)}`,

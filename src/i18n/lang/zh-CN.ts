@@ -4,6 +4,7 @@ export default {
   nav: {
     home: "首页",
     posts: "文章",
+    categories: "分类",
     tags: "专题 / 标签",
     readingList: "阅读清单",
     about: "关于",
@@ -42,8 +43,14 @@ export default {
     tagTitle: "标签",
     tagDesc: "带有该标签的所有文章。",
 
+    categoryTitle: "分类",
+    categoryDesc: "属于该分类的所有文章。",
+
     tagsTitle: "专题 / 标签",
     tagsDesc: "按主题快速浏览你的文章索引。",
+
+    categoriesTitle: "博客分类",
+    categoriesDesc: "按主要研究方向浏览阅读笔记与技术笔记。",
 
     postsTitle: "全部文章",
     postsDesc: "这里收录所有公开发布的阅读笔记与训练笔记。",

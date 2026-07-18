@@ -11,6 +11,7 @@ import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { getTagCounts } from "@/utils/getTagCounts";
+import { getCategoryCounts } from "@/utils/getPostCategory";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 import { readingList } from "@/data/readingList";
@@ -27,6 +28,7 @@ const featuredPosts = sortedPosts
   .slice(0, 3);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const tagStats = getTagCounts(sortedPosts).slice(0, 8);
+const categoryStats = getCategoryCounts(sortedPosts);
 const latestReading = readingList.slice(0, 4);
 const archiveYears = new Set(
   sortedPosts.map(post => post.data.pubDatetime.getFullYear())
@@ -182,12 +184,34 @@ const homePath = getRelativeLocaleUrl(locale, "");
       <div class="min-w-0">
         <div class="flex items-end justify-between gap-4">
           <div>
-            <p class="editorial-kicker">专题索引</p>
+            <p class="editorial-kicker">分类与专题</p>
             <h2 class="mt-4 text-3xl font-semibold">
-              用标签追踪主题，而不是只追时间。
+              先按领域定位，再用标签缩小范围。
             </h2>
           </div>
         </div>
+        <ul class="mt-8 grid gap-3 sm:grid-cols-3">
+          {
+            categoryStats.map(({ category, categoryName, count }) => (
+              <li>
+                <a
+                  href={getRelativeLocaleUrl(locale, `categories/${category}/`)}
+                  class="paper-panel group block px-4 py-4 transition-transform hover:-translate-y-0.5"
+                >
+                  <span class="text-muted-foreground text-xs tracking-[0.14em] uppercase">
+                    分类
+                  </span>
+                  <span class="group-hover:text-accent mt-2 block text-lg font-semibold">
+                    {categoryName}
+                  </span>
+                  <span class="text-muted-foreground mt-1 block text-sm">
+                    {count} 篇文章
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
         <ul class="mt-8 flex flex-wrap gap-3">
           {
             tagStats.map(({ tag, tagName, count }) => (

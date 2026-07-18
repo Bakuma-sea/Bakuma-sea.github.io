@@ -15,9 +15,16 @@ const locale = Astro.currentLocale ?? config.site.lang;
 <li>
   <a
     href={getRelativeLocaleUrl(locale, `categories/${category}/`)}
-    class="paper-panel group flex items-center justify-between gap-4 px-5 py-4 transition-transform hover:-translate-y-0.5"
+    class="category-tile group flex flex-col justify-between gap-4"
   >
-    <span class="group-hover:text-accent font-semibold">{categoryName}</span>
+    <span
+      class="text-muted-foreground text-[0.68rem] font-semibold tracking-[0.16em] uppercase"
+    >
+      分类
+    </span>
+    <span class="group-hover:text-accent text-lg font-semibold"
+      >{categoryName}</span
+    >
     {
       count !== undefined && (
         <span class="text-muted-foreground text-sm">{count} 篇</span>

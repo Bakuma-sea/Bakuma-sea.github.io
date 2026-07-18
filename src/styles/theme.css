@@ -15,41 +15,41 @@
 /* Light theme values */
 :root,
 [data-theme="light"] {
-  --background: #fbfaf7;
-  --foreground: #1f2320;
-  --accent: #214f43;
+  --background: #f7f8f6;
+  --foreground: #172229;
+  --accent: #2854c7;
   --accent-foreground: #ffffff;
-  --muted: #eef1ec;
-  --muted-foreground: #667168;
-  --border: #d7ddd5;
+  --muted: #e9edf4;
+  --muted-foreground: #64717b;
+  --border: #d8dee6;
   --font-body:
-    "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei",
-    sans-serif;
+    "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
   --font-heading:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC",
-    "Noto Serif SC", serif;
+    "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
   --font-mono-stack:
     "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", "Menlo", monospace;
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #121515;
-  --foreground: #f4efe7;
-  --accent: #b8dfcf;
-  --accent-foreground: #12201b;
-  --muted: #202626;
-  --muted-foreground: #d2cabf;
-  --border: #444b48;
+  --background: #13171d;
+  --foreground: #f1f4f8;
+  --accent: #a9bfff;
+  --accent-foreground: #111a30;
+  --muted: #202732;
+  --muted-foreground: #aab4c2;
+  --border: #39424f;
 }
 
 /* Warm paper values for long-form reading */
 [data-theme="paper"] {
-  --background: #f7f2e8;
-  --foreground: #1f1b17;
-  --accent: #214f43;
+  --background: #f4f0e7;
+  --foreground: #25231f;
+  --accent: #2d4e9d;
   --accent-foreground: #ffffff;
-  --muted: #eee5d7;
-  --muted-foreground: #776b60;
-  --border: #d7cbbd;
+  --muted: #ebe5d9;
+  --muted-foreground: #766f65;
+  --border: #d4cbbb;
 }

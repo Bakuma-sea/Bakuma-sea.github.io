@@ -2,6 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { toTransitionName } from "@/utils/toTransitionName";
+import { getPostCategory } from "@/utils/getPostCategory";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import config from "@/config";
 import Datetime from "./Datetime.astro";
 
 type Props = {
@@ -11,10 +14,24 @@ type Props = {
 const { variant: Heading = "h2", id, data, filePath } = Astro.props;
 
 const { title, description, ...props } = data;
+const { category, categoryName } = getPostCategory(Astro.props);
+const locale = Astro.currentLocale ?? config.site.lang;
 ---
 
-<li class="border-border grid gap-3 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
+<li
+  class="list-card grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start"
+>
   <div>
+    <div class="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+      <a
+        href={getRelativeLocaleUrl(locale, `categories/${category}/`)}
+        class="text-accent font-semibold tracking-[0.08em] uppercase"
+      >
+        {categoryName}
+      </a>
+      <span class="text-muted-foreground">/</span>
+      <Datetime {...props} />
+    </div>
     <a
       href={getPostUrl(id, filePath, Astro.currentLocale)}
       class:list={[
@@ -29,5 +46,4 @@ const { title, description, ...props } = data;
     </a>
     <p class="mt-2 max-w-[60ch] leading-7">{description}</p>
   </div>
-  <Datetime {...props} class="sm:justify-self-end" />
 </li>
